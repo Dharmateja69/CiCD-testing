@@ -35,7 +35,14 @@ export default function Login() {
   return (
     <>
       {!logout ? (
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white p-4 rounded shadow-md"
+        >
+          <h2 className="text-xl mb-4">Login</h2>
+          <p className="text-gray-600 mb-4">
+            Please enter your credentials to login.
+          </p>
           <input
             type="text"
             placeholder="Username"
