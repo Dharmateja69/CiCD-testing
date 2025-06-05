@@ -25,29 +25,15 @@ jobs:
       - name: Build and push Backend image
         uses: docker/build-push-action@v4
         with:
-          context: .
-          file: Backend/Dockerfile
+          context: ./Backend
+          file: ./Backend/Dockerfile
           push: true
-          tags: yourdockerhubusername/backend:latest
+          tags: sidh146/backend:latest
 
       - name: Build and push Frontend image
         uses: docker/build-push-action@v4
         with:
-          context: .
-          file: Frontend/Dockerfile
+          context: ./Frontend
+          file: ./Frontend/Dockerfile
           push: true
-          tags: yourdockerhubusername/frontend:latest
-
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@v3
-        with:
-          version: "latest"
-
-      - name: Deploy to Kubernetes
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        run: |
-          echo "$KUBE_CONFIG_DATA" | base64 -d > kubeconfig
-          kubectl --kubeconfig=kubeconfig apply -f k8s/
-          kubectl --kubeconfig=kubeconfig rollout restart deployment/frontend-deployment
-          kubectl --kubeconfig=kubeconfig rollout restart deployment/backend-deployment
+          tags: sidh146/frontend:latest
