@@ -1,22 +1,24 @@
+# Frontend/Dockerfile
 FROM node:18-alpine AS build
 
 WORKDIR /app
 
+# Copy only frontend's package.json and lock
 COPY Frontend/package*.json ./
 
 RUN npm install
 
+# Copy the entire frontend source code
 COPY Frontend ./
 
+# Build React/Vite app
 RUN npm run build
 
+# Serve with Nginx
 FROM nginx:alpine
 
-# Copy Vite build output (in /app/dist) to Nginx's public directory
 COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
-# Note: This Dockerfile assumes that the frontend code is in a folder named 'Frontend'
-# and that the build output is in a folder named 'build'.

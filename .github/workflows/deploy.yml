@@ -21,7 +21,7 @@ jobs:
       - name: Build and push Backend image
         uses: docker/build-push-action@v4
         with:
-          context: ./Backend
+          context: .
           file: ./Backend/Dockerfile
           push: true
           tags: sidh146/backend:latest
@@ -29,7 +29,7 @@ jobs:
       - name: Build and push Frontend image
         uses: docker/build-push-action@v4
         with:
-          context: ./Frontend
+          context: .
           file: ./Frontend/Dockerfile
           push: true
           tags: sidh146/frontend:latest

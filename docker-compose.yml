@@ -4,14 +4,14 @@ services:
   backend:
     build:
       context: .
-      dockerfile: Backend/Dockerfile # Corrected case
+      dockerfile: Backend/Dockerfile
     ports:
       - "5000:5000"
 
   frontend:
     build:
       context: .
-      dockerfile: Frontend/Dockerfile # Corrected case
+      dockerfile: Frontend/Dockerfile
     ports:
       - "5173:80"
     depends_on:
